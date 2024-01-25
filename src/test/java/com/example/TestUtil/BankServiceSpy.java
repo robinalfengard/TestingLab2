@@ -1,6 +1,8 @@
-package com.example;
+package com.example.TestUtil;
 
-public class BankServiceSpy implements BankService{
+import com.example.BankService;
+
+public class BankServiceSpy implements BankService {
     public boolean payWasCalled = false;
     @Override
     public void pay(String id, double amount) {

@@ -1,9 +1,12 @@
-package com.example;
+package com.example.TestUtil;
+
+import com.example.Employee;
+import com.example.EmployeeRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class InMemoryEmployeeRepo implements EmployeeRepository{
+public class InMemoryEmployeeRepo implements EmployeeRepository {
 
     private final List<Employee> inMemoryEmployeeList = new ArrayList<>();
 
