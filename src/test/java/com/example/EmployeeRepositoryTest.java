@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,7 +18,7 @@ class EmployeeRepositoryTest {
     @DisplayName("Saved User Should Be Saved")
     void savedEmployeeShouldBeSaved(){
         inMemoryEmployeeRepo.save(new Employee("1",  20000));
-        assertThat(inMemoryEmployeeRepo.findAll().size()).isEqualTo(1);
+        assertThat(List.copyOf(inMemoryEmployeeRepo.findAll()).size()).isEqualTo(1);
     }
 
     @Test
@@ -24,7 +26,7 @@ class EmployeeRepositoryTest {
     void multipleSavedUsersWithDifferentIdsShouldBeSaved(){
         inMemoryEmployeeRepo.save(new Employee("1",  20000));
         inMemoryEmployeeRepo.save(new Employee("2",  30000));
-        assertThat(inMemoryEmployeeRepo.findAll().size()).isEqualTo(2);
+        assertThat(List.copyOf(inMemoryEmployeeRepo.findAll()).size()).isEqualTo(2);
     }
 
     @Test
@@ -32,7 +34,7 @@ class EmployeeRepositoryTest {
     void savedEmployeeThatHasSameIdAsAnotherSavedEmployeeShouldReplacedTheOldEmployee(){
         inMemoryEmployeeRepo.save(new Employee("1",  20000));
         inMemoryEmployeeRepo.save(new Employee("1", 30000));
-        assertThat(1).isEqualTo(inMemoryEmployeeRepo.findAll().size());
+        assertThat(List.copyOf(inMemoryEmployeeRepo.findAll()).size()).isEqualTo(1);
     }
 
 }
