@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.TestUtil.BankServiceSpy;
+import com.example.TestUtil.BankServiceStub;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,8 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class EmployeesTest {
@@ -19,6 +19,8 @@ class EmployeesTest {
 
     EmployeeRepository employeeRepositoryMock = mock(EmployeeRepository.class);
     BankServiceSpy bankServiceSpy = new BankServiceSpy();
+
+    BankServiceStub bankServiceStub = new BankServiceStub();
 
     Employees employees = new Employees(employeeRepositoryMock, bankServiceSpy);
 
@@ -57,9 +59,21 @@ class EmployeesTest {
     }
 
     @Test
-    @DisplayName("When employees is empty Runtime Exception will be thrown from payEmployees")
-    void whenEmployeesIsEmptyRuntimeExceptionWillBeThrownFromPayEmployees(){
+    @DisplayName("If Runtime Exception is Thrown Payments Wont Be Completed")
+    void IfRuntimeExceptionIsThrownPaymentsWontBeCompleted(){
+        Employees employees = new Employees(employeeRepositoryMock, bankServiceStub);
+        addThreeEmployees();
+        int numberOfPayments = employees.payEmployees();
+        assertThat(numberOfPayments).isEqualTo(0);
+    }
 
+    @Test
+    @DisplayName("If Runtime Exception is Thrown isPaid On Employee Should Be False")
+    void IfRuntimeExceptionIsThrownIsPaidOnEmployeeShouldBeFalse(){
+        Employees employees = new Employees(employeeRepositoryMock, bankServiceStub);
+        addThreeEmployees();
+        boolean isFirstEmployeePaid = employeeRepositoryMock.findAll().get(0).isPaid();
+        assertFalse(isFirstEmployeePaid);
     }
 
 
