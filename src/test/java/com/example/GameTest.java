@@ -24,4 +24,12 @@ class GameTest {
         assertThat(game.score()).isEqualTo(6);
     }
 
+    @Test
+    @DisplayName("Roll an input a number larger than 10 should result in an IllegalArgumentException")
+    void rollAnInputLargerThan10ShouldResultInAnIllegalArgumentException(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            game.roll(11);
+        });
+    }
+
 }
