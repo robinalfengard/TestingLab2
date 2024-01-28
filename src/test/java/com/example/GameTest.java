@@ -74,6 +74,26 @@ class GameTest {
         assertThat(game.score()).isEqualTo(41);
     }
 
+    @Test
+    @DisplayName("scoring three strikes in the last frame should add 30  more points")
+    void scoringThreeStrikesInTHeLastFrameShouldAdd30MorePoints(){
+        rollNumberOfTimes(18, 2);
+        game.roll(10);
+        game.roll(10);
+        game.roll(10);
+        assertThat(game.score()).isEqualTo(66);
+    }
+
+    @Test
+    @DisplayName("scoring a spare followed by a strike in the last frame should add 20 more points")
+    void scoringASpareFollowedByAStrikeInTheLastFrameShouldAdd20MorePoints(){
+        rollNumberOfTimes(18, 2);
+        game.roll(2);
+        game.roll(8);
+        game.roll(10);
+        assertThat(game.score()).isEqualTo(56);
+    }
+
     private void rollNumberOfTimes(int numberOfRolls, int pinsKnockedDownPerRoll){
         for (int i = 0; i <numberOfRolls; i++) {
             game.roll(pinsKnockedDownPerRoll);
