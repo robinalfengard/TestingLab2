@@ -32,4 +32,13 @@ class GameTest {
         });
     }
 
+    @Test
+    @DisplayName("Roll a strike followed by 2 and 7 points should generate in a score of 28")
+    void rollAStrikeFollowedBy2And7PointsShouldGenerateInAScoreOf28(){
+        game.roll(10);
+        game.roll(2);
+        game.roll(7);
+        assertThat(game.score()).isEqualTo(28);
+    }
+
 }
