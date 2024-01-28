@@ -72,6 +72,7 @@ class EmployeesTest {
     void IfRuntimeExceptionIsThrownIsPaidOnEmployeeShouldBeFalse(){
         Employees employees = new Employees(employeeRepositoryMock, bankServiceStub);
         addThreeEmployees();
+        employees.payEmployees();
         boolean isFirstEmployeePaid = employeeRepositoryMock.findAll().get(0).isPaid();
         assertFalse(isFirstEmployeePaid);
     }
