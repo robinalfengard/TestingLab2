@@ -25,8 +25,7 @@ public class Game {
             } else if (rolls[indexOfRoll] + rolls[indexOfRoll+1] == 10) {
                 totalScore += 10 + rolls[indexOfRoll + 2];
                 indexOfRoll += 2;
-            }
-            else {
+            } else {
                 totalScore += rolls[indexOfRoll] + rolls[indexOfRoll +1];
                 indexOfRoll += 2;
             }

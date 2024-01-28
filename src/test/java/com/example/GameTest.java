@@ -64,4 +64,20 @@ class GameTest {
         assertThat(game.score()).isEqualTo(60);
     }
 
+    @Test
+    @DisplayName("Not scoring strike or spare in the last frame should only add the scored points")
+    void notScoringStrikeOrSpareInTheLastFrameShouldOnlyAddTheScoredPoints(){
+        rollNumberOfTimes(18, 2);
+        game.roll(2);
+        game.roll(3);
+        game.roll(4);
+        assertThat(game.score()).isEqualTo(41);
+    }
+
+    private void rollNumberOfTimes(int numberOfRolls, int pinsKnockedDownPerRoll){
+        for (int i = 0; i <numberOfRolls; i++) {
+            game.roll(pinsKnockedDownPerRoll);
+        }
+    }
+
 }
