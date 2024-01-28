@@ -94,6 +94,15 @@ class GameTest {
         assertThat(game.score()).isEqualTo(56);
     }
 
+    @Test
+    @DisplayName("scoring a spare with a total of more than 10 points should return illegal argument exception")
+    void scoringASpareWithATotalOfMoreThan10PointsShouldReturnIllegalArgumentException(){
+        game.roll(3);
+        assertThrows(IllegalArgumentException.class, () -> {
+            game.roll(8);
+        });
+    }
+
     private void rollNumberOfTimes(int numberOfRolls, int pinsKnockedDownPerRoll){
         for (int i = 0; i <numberOfRolls; i++) {
             game.roll(pinsKnockedDownPerRoll);
