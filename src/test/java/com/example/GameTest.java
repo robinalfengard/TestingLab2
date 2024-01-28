@@ -75,7 +75,7 @@ class GameTest {
     }
 
     @Test
-    @DisplayName("scoring three strikes in the last frame should add 30  more points")
+    @DisplayName("Scoring three strikes in the last frame should add 30  more points")
     void scoringThreeStrikesInTHeLastFrameShouldAdd30MorePoints(){
         rollNumberOfTimes(18, 2);
         game.roll(10);
@@ -85,7 +85,7 @@ class GameTest {
     }
 
     @Test
-    @DisplayName("scoring a spare followed by a strike in the last frame should add 20 more points")
+    @DisplayName("Scoring a spare followed by a strike in the last frame should add 20 more points")
     void scoringASpareFollowedByAStrikeInTheLastFrameShouldAdd20MorePoints(){
         rollNumberOfTimes(18, 2);
         game.roll(2);
@@ -95,12 +95,19 @@ class GameTest {
     }
 
     @Test
-    @DisplayName("scoring a spare with a total of more than 10 points should return illegal argument exception")
+    @DisplayName("Scoring a spare with a total of more than 10 points should return illegal argument exception")
     void scoringASpareWithATotalOfMoreThan10PointsShouldReturnIllegalArgumentException(){
         game.roll(3);
         assertThrows(IllegalArgumentException.class, () -> {
             game.roll(8);
         });
+    }
+
+    @Test
+    @DisplayName("Scoring 12 strikes should generate in a total score of 300 ")
+    void scoring12StrikesShouldGenerateInATotalScoreOf300(){
+        rollNumberOfTimes(12, 10);
+        assertThat(game.score()).isEqualTo(300);
     }
 
     private void rollNumberOfTimes(int numberOfRolls, int pinsKnockedDownPerRoll){
