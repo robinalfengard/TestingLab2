@@ -41,4 +41,14 @@ class GameTest {
         assertThat(game.score()).isEqualTo(28);
     }
 
+    @Test
+    @DisplayName("Roll a spare followed by 2 and 7 points should generate in a score of 21")
+    void rollASpareFollowedBy2And7PointsShouldGenerateInAScoreOf28(){
+        game.roll(1);
+        game.roll(9);
+        game.roll(2);
+        game.roll(7);
+        assertThat(game.score()).isEqualTo(21);
+    }
+
 }

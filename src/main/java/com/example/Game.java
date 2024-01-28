@@ -22,9 +22,17 @@ public class Game {
             if(rolls[indexOfRoll] == 10){
                 totalScore += 10 + rolls[indexOfRoll + 1] + rolls[indexOfRoll + 2];
                 indexOfRoll +=1;
+            } else if (rolls[indexOfRoll] + rolls[indexOfRoll+1] == 10) {
+                totalScore += 10 + rolls[indexOfRoll + 2];
+                indexOfRoll += 2;
             }
-            totalScore += rolls[indexOfRoll] + rolls[indexOfRoll +1];
-            indexOfRoll += 2;
+            else {
+                totalScore += rolls[indexOfRoll] + rolls[indexOfRoll +1];
+                indexOfRoll += 2;
+            }
+
+
+
         }
         return totalScore;
     }
