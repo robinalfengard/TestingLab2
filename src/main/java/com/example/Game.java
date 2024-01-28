@@ -1,10 +1,7 @@
 package com.example;
-
-import java.util.Arrays;
-
 public class Game {
     private final int MAXIMUM_NUMBER_OF_ROUNDS = 21;
-    private int[] rolls  = new int[MAXIMUM_NUMBER_OF_ROUNDS];
+    private final int[] rolls  = new int[MAXIMUM_NUMBER_OF_ROUNDS];
     int currentRoll = 0;
 
     int round = 0;
@@ -12,7 +9,7 @@ public class Game {
     void roll(int numberOfPinsKnockedDown){
         round++;
         if(numberOfPinsKnockedDown>10)
-            throw new IllegalArgumentException("You can't struck down more than 10 pins");
+            throw new IllegalArgumentException("You can't strike down more than 10 pins in one roll");
         if(round == 2 && rolls[currentRoll-1] != 10 && numberOfPinsKnockedDown + rolls[currentRoll-1]>10)
             throw new IllegalArgumentException("You can't combine a spare with more than 10 pins");
         rolls[currentRoll] = numberOfPinsKnockedDown;

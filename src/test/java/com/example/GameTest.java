@@ -1,8 +1,6 @@
 package com.example;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,9 +25,7 @@ class GameTest {
     @Test
     @DisplayName("Roll an input a number larger than 10 should result in an IllegalArgumentException")
     void rollAnInputLargerThan10ShouldResultInAnIllegalArgumentException(){
-        assertThrows(IllegalArgumentException.class, () -> {
-            game.roll(11);
-        });
+        assertThrows(IllegalArgumentException.class, () -> game.roll(11));
     }
 
     @Test
@@ -98,15 +94,20 @@ class GameTest {
     @DisplayName("Scoring a spare with a total of more than 10 points should return illegal argument exception")
     void scoringASpareWithATotalOfMoreThan10PointsShouldReturnIllegalArgumentException(){
         game.roll(3);
-        assertThrows(IllegalArgumentException.class, () -> {
-            game.roll(8);
-        });
+        assertThrows(IllegalArgumentException.class, () -> game.roll(8));
     }
 
     @Test
     @DisplayName("Scoring 12 strikes should generate in a total score of 300 ")
     void scoring12StrikesShouldGenerateInATotalScoreOf300(){
         rollNumberOfTimes(12, 10);
+        assertThat(game.score()).isEqualTo(300);
+    }
+
+    @Test
+    @DisplayName("Scoring more strikes than max should not result in more points")
+    void scoringMoreThan12StrikesShouldResultInException(){
+        rollNumberOfTimes(13, 10);
         assertThat(game.score()).isEqualTo(300);
     }
 
