@@ -51,4 +51,17 @@ class GameTest {
         assertThat(game.score()).isEqualTo(21);
     }
 
+    @Test
+    @DisplayName("Spare followed by Strike followed by Spare followed by 3 plus 4 should generate a score of 60")
+    void spareFollowedByStrikeFollowedBySpareFollowedBy3Plus4ShouldGenerateAScoreOf60(){
+        game.roll(1);
+        game.roll(9);
+        game.roll(10);
+        game.roll(6);
+        game.roll(4);
+        game.roll(3);
+        game.roll(4);
+        assertThat(game.score()).isEqualTo(60);
+    }
+
 }
